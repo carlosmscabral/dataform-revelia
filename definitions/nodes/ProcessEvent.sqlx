@@ -17,5 +17,5 @@ SELECT
   CAST(dt_evento AS TIMESTAMP) AS event_timestamp,
   'PJE' AS system_source
 FROM
-  ${ref("vibe-cabral.revelia_landing_zone.eventos_unstructured")}
+  ${ref("eventos_unstructured")}
 WHERE txt_movimento IS NOT NULL

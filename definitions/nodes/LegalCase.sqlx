@@ -17,4 +17,4 @@ SELECT
   END AS matter_type,
   'WAIT_FOR_ALL' AS current_status
 FROM
-  ${ref("vibe-cabral.revelia_landing_zone.processos_legacy")}
+  ${ref("processos_legacy")}

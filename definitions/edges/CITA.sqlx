@@ -11,9 +11,9 @@ SELECT
     ELSE 'PENDING'
   END AS validation_status
 FROM
-  ${ref("vibe-cabral.revelia_landing_zone.eventos_unstructured")} e
+  ${ref("eventos_unstructured")} e
 JOIN
-  ${ref("vibe-cabral.revelia_landing_zone.citacoes_raw")} c
+  ${ref("citacoes_raw")} c
 ON
   e.proc_ref = c.num_proc
 WHERE

@@ -19,4 +19,4 @@ SELECT
   'PENDING' AS electronic_status,
   FALSE AS is_personal_intimation
 FROM
-  ${ref("vibe-cabral.revelia_landing_zone.citacoes_raw")}
+  ${ref("citacoes_raw")}
