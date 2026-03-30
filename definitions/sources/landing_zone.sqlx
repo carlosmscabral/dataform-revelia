@@ -1,0 +1,20 @@
+config {
+  type: "declaration",
+  database: "vibe-cabral",
+  schema: "revelia_landing_zone",
+  name: "citacoes_raw"
+}
+
+config {
+  type: "declaration",
+  database: "vibe-cabral",
+  schema: "revelia_landing_zone",
+  name: "processos_legacy"
+}
+
+config {
+  type: "declaration",
+  database: "vibe-cabral",
+  schema: "revelia_landing_zone",
+  name: "eventos_unstructured"
+}
