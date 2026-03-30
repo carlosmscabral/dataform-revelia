@@ -1,0 +1,11 @@
+config {
+  type: "view",
+  name: "HAS_EVENT_Edge_Golden"
+}
+
+SELECT
+  proc_ref AS source_id, -- LegalCase.case_id
+  id_evento AS target_id -- ProcessEvent.event_id
+FROM
+  ${ref("vibe-cabral.revelia_landing_zone.eventos_unstructured")}
+WHERE proc_ref IS NOT NULL

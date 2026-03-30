@@ -1,0 +1,20 @@
+config {
+  type: "view",
+  name: "LegalCase_Golden"
+}
+
+SELECT
+  num_processo AS case_id,
+  num_processo AS cnj_number,
+  UPPER(TRIM(tribunal)) AS tribunal,
+  CASE
+    WHEN UPPER(classe_judicial) LIKE '%FAZENDA%' THEN 'DOMINIO_PUBLICO'
+    ELSE 'DOMINIO_PRIVADO'
+  END AS natureza_relacao,
+  CASE
+    WHEN UPPER(classe_judicial) LIKE '%FAMILIA%' OR segredo_justica = 'true' THEN 'DIREITO_INDISPONIVEL'
+    ELSE 'DIREITO_DISPONIVEL'
+  END AS matter_type,
+  'WAIT_FOR_ALL' AS current_status
+FROM
+  ${ref("vibe-cabral.revelia_landing_zone.processos_legacy")}

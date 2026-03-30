@@ -1,0 +1,21 @@
+config {
+  type: "view",
+  name: "ProcessEvent_Golden"
+}
+
+SELECT
+  id_evento AS event_id,
+  CASE 
+    WHEN UPPER(txt_movimento) LIKE '%CITACAO%' THEN 118 -- Citação (TPU)
+    WHEN UPPER(txt_movimento) LIKE '%CONTESTACAO%' THEN 100 -- Defesa (TPU)
+    WHEN UPPER(txt_movimento) LIKE '%INTIMACAO%' THEN 122 -- Intimação (TPU)
+    WHEN UPPER(txt_movimento) LIKE '%AR%' THEN 85 -- Juntada de AR (TPU)
+    WHEN UPPER(txt_movimento) LIKE '%CONCLUSOS%' THEN 51 -- Conclusos (TPU)
+    ELSE 0 -- Genérico
+  END AS tpu_code,
+  UPPER(TRIM(txt_movimento)) AS event_name,
+  CAST(dt_evento AS TIMESTAMP) AS event_timestamp,
+  'PJE' AS system_source
+FROM
+  ${ref("vibe-cabral.revelia_landing_zone.eventos_unstructured")}
+WHERE txt_movimento IS NOT NULL

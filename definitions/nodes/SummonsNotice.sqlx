@@ -1,0 +1,22 @@
+config {
+  type: "view",
+  name: "SummonsNotice_Golden"
+}
+
+SELECT
+  confrontado_com_id AS notice_id,
+  'CORREIO' AS method, -- Hardcoded baseline based on sample raw pattern
+  'UNKNOWN_ADDRESS' AS delivery_address,
+  UPPER(TRIM(nome_recebedor)) AS receiver_name,
+  CASE
+    WHEN UPPER(nome_recebedor) LIKE '%RECEBEDOR%' THEN 'TERCEIRO'
+    ELSE 'REPRESENTANTE'
+  END AS receiver_role,
+  CASE 
+    WHEN status_entrega = 'Entregue' THEN TRUE 
+    ELSE FALSE 
+  END AS is_appearance_theory_valid,
+  'PENDING' AS electronic_status,
+  FALSE AS is_personal_intimation
+FROM
+  ${ref("vibe-cabral.revelia_landing_zone.citacoes_raw")}

@@ -1,0 +1,4 @@
+defaultProject: "vibe-cabral"
+defaultLocation: "us-central1"
+defaultDataset: "revelia_golden_schema"
+defaultAssertionDataset: "dataform_assertions"
