@@ -1,0 +1,6 @@
+config {
+  type: "declaration",
+  database: "vibe-cabral",
+  schema: "revelia_landing_zone",
+  name: "eventos_unstructured"
+}
