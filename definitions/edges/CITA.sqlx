@@ -4,7 +4,7 @@ config {
 }
 
 SELECT
-  e.id_evento AS source_id,
+  CAST(e.id_evento AS STRING) AS source_id,
   c.confrontado_com_id AS target_id,
   CASE
     WHEN c.status_entrega = 'Entregue' THEN 'VALID'

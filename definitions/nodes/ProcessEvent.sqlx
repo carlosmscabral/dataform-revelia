@@ -4,7 +4,7 @@ config {
 }
 
 SELECT
-  id_evento AS event_id,
+  CAST(id_evento AS STRING) AS event_id,
   CASE 
     WHEN UPPER(txt_movimento) LIKE '%CITACAO%' THEN 118 -- Citação (TPU)
     WHEN UPPER(txt_movimento) LIKE '%CONTESTACAO%' THEN 100 -- Defesa (TPU)

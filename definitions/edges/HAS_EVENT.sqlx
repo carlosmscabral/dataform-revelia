@@ -5,7 +5,7 @@ config {
 
 SELECT
   proc_ref AS source_id, -- LegalCase.case_id
-  id_evento AS target_id, -- ProcessEvent.event_id
+  CAST(id_evento AS STRING) AS target_id, -- ProcessEvent.event_id
   CURRENT_TIMESTAMP() AS updated_at
 FROM
   ${ref("eventos_unstructured")}
