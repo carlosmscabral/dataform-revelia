@@ -15,6 +15,7 @@ SELECT
     WHEN UPPER(classe_judicial) LIKE '%FAMILIA%' OR segredo_justica = TRUE THEN 'DIREITO_INDISPONIVEL'
     ELSE 'DIREITO_DISPONIVEL'
   END AS matter_type,
-  'WAIT_FOR_ALL' AS current_status
+  'WAIT_FOR_ALL' AS current_status,
+  CURRENT_TIMESTAMP() AS updated_at
 FROM
   ${ref("processos_legacy")}

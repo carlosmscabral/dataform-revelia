@@ -1,0 +1,19 @@
+config {
+  type: "view",
+  name: "Party_Golden"
+}
+
+SELECT
+  cpf_cnpj AS party_id,
+  cpf_cnpj AS doc_number,
+  TRIM(nome_completo) AS name,
+  CASE
+    WHEN UPPER(TRIM(tipo_parte)) IN ('RÉU', 'REU') THEN 'DEFENDANT'
+    WHEN UPPER(TRIM(tipo_parte)) IN ('AUTOR', 'AUTORA') THEN 'PLAINTIFF'
+    ELSE UPPER(TRIM(tipo_parte))
+  END AS party_type,
+  TRUE AS active_status,
+  CURRENT_TIMESTAMP() AS updated_at
+FROM
+  ${ref("partes_envolvidas")}
+WHERE cpf_cnpj IS NOT NULL

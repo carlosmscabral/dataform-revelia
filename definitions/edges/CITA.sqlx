@@ -9,7 +9,8 @@ SELECT
   CASE
     WHEN c.status_entrega = 'Entregue' THEN 'VALID'
     ELSE 'PENDING'
-  END AS validation_status
+  END AS validation_status,
+  CURRENT_TIMESTAMP() AS updated_at
 FROM
   ${ref("eventos_unstructured")} e
 JOIN

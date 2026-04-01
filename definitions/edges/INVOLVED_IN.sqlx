@@ -1,0 +1,19 @@
+config {
+  type: "view",
+  name: "INVOLVED_IN_Edge_Golden"
+}
+
+SELECT
+  p.cpf_cnpj AS source_id,  -- Party.party_id
+  p.processo_ref AS target_id,  -- LegalCase.case_id
+  CASE
+    WHEN UPPER(TRIM(p.tipo_parte)) IN ('RÉU', 'REU') THEN 'DEFENDANT'
+    WHEN UPPER(TRIM(p.tipo_parte)) IN ('AUTOR', 'AUTORA') THEN 'PLAINTIFF'
+    ELSE UPPER(TRIM(p.tipo_parte))
+  END AS role,
+  FALSE AS has_independent_lawyer,
+  CURRENT_TIMESTAMP() AS updated_at
+FROM
+  ${ref("partes_envolvidas")} p
+WHERE p.cpf_cnpj IS NOT NULL
+  AND p.processo_ref IS NOT NULL

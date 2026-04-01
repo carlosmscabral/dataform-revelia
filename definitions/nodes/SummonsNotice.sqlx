@@ -17,6 +17,7 @@ SELECT
     ELSE FALSE 
   END AS is_appearance_theory_valid,
   'PENDING' AS electronic_status,
-  FALSE AS is_personal_intimation
+  FALSE AS is_personal_intimation,
+  CURRENT_TIMESTAMP() AS updated_at
 FROM
   ${ref("citacoes_raw")}
